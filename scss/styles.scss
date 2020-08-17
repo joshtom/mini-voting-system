@@ -1,5 +1,76 @@
+$DARK_PRIMARY: #232B3D;
+$DARK_WARNING: #F7B354;
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+// font-family: 'Work Sans', sans-serif;
 body {
-    background-color: red;
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 200;
+    background: url('../assets/bg.svg');
+    padding-top: 40px;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+
+    .card {
+        &__banner {
+            background: $DARK_PRIMARY;
+            color: white;
+            p {
+                margin-bottom: 5px;
+            }
+            h1 {
+                font-size: 2.2rem;
+                color: #eee;
+                @media screen {
+                    // font-size: 2.5rem;
+                }
+            }
+            .progress-bar {
+                background-color: $DARK_WARNING;
+            }
+        }
+
+      
+
+       .right {
+           
+           button {
+               font-weight: bolder;
+               border-radius: 0;
+           }
+           .input-group {
+               width: 50%;
+
+               input {
+                   text-align: center;
+                   font-weight: bold;
+               }
+           }
+
+           @media screen and (max-width: 992px){
+               display: flex;
+               flex-direction: column;
+               justify-content: center;
+               align-items: center;
+           }
+       }
+    }
+
+    .card__container {
+        margin-bottom: 50px;
+    }
+
+    // View leader button
+    .leader__button {
+        background-color: $DARK_PRIMARY;
+        margin: auto;
+    }
 }

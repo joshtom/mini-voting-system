@@ -1,7 +1,61 @@
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background-color: red;
-  font-family: "Work Sans", sans-serif;
-  font-weight: 200;
+  background: url("../assets/bg.svg");
+  padding-top: 40px;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+}
+.container .card__banner {
+  background: #232B3D;
+  color: white;
+}
+.container .card__banner p {
+  margin-bottom: 5px;
+}
+.container .card__banner h1 {
+  font-size: 2.2rem;
+  color: #eee;
+}
+.container .card__banner .progress-bar {
+  background-color: #F7B354;
+}
+.container .card .right button {
+  font-weight: bolder;
+  border-radius: 0;
+}
+.container .card .right .input-group {
+  width: 50%;
+}
+.container .card .right .input-group input {
+  text-align: center;
+  font-weight: bold;
+}
+@media screen and (max-width: 992px) {
+  .container .card .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.container .card__container {
+  margin-bottom: 50px;
+}
+.container .leader__button {
+  background-color: #232B3D;
+  margin: auto;
 }
 
 /*# sourceMappingURL=styles.css.map */

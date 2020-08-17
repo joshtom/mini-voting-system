@@ -31,6 +31,9 @@ body {
 .container .card__banner .progress-bar {
   background-color: #F7B354;
 }
+.container .card .left img {
+  border-radius: 50%;
+}
 .container .card .right button {
   font-weight: bolder;
   border-radius: 0;
@@ -56,6 +59,24 @@ body {
 .container .leader__button {
   background-color: #232B3D;
   margin: auto;
+}
+
+.back__to__vote {
+  color: white;
+  background: #232B3D;
+}
+
+.Leader__card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.Leader__card h3 {
+  margin-left: 20px;
+}
+.Leader__card button {
+  margin-left: auto;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -38,7 +38,11 @@ body {
             }
         }
 
-      
+        .left {
+            img {
+                border-radius: 50%;
+            }
+        }
 
        .right {
            
@@ -72,5 +76,25 @@ body {
     .leader__button {
         background-color: $DARK_PRIMARY;
         margin: auto;
+    }
+}
+
+// Styling for leaderboard
+.back__to__vote {
+    color: white;
+    background: $DARK_PRIMARY;
+}
+
+.Leader__card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    h3 {
+        margin-left: 20px;
+    }
+    button {
+        margin-left: auto;
     }
 }

@@ -24,6 +24,7 @@
  }
 
  let VOTE_COUNT = 100;
+ let VALUE_COUNT = [];
 
 
 
@@ -33,23 +34,22 @@ document.addEventListener('DOMContentLoaded', function Ready() {
     getElement("#vote_count").innerHTML = VOTE_COUNT;
     const allMinusButton = getAllElement("#minus");
     const allPlusButton = getAllElement("#plus");
+    let allInputValue = getAllElement("input");
 
-    function Showme() {
-        alert('This is working');
-    }
-
-    function addFunc() {
-        alert('Plus working');
-    }
+    
 
     // Select all minus button
     for (let minusButton of allMinusButton) {
-        minusButton.addEventListener('click', Showme)
+        minusButton.addEventListener('click', () => {  })
     }
 
     // Select All plus button
     for (let plusButton of allPlusButton) {
-        plusButton.addEventListener('click', addFunc)
+        plusButton.addEventListener('click', function increaseInputValue() {
+            for(let inputValue of allInputValue) {
+                console.log(inputValue.id);
+            }
+        })
     }
 
 })

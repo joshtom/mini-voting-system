@@ -23,7 +23,8 @@
     return document.querySelectorAll(value).value;
  }
 
- let VOTE_COUNT = 100;
+ var vote_count = 5;
+ 
  let VALUE_COUNT = [];
 
 
@@ -31,7 +32,9 @@
 
 document.addEventListener('DOMContentLoaded', function Ready() {
     // Populate count value
-    getElement("#vote_count").innerHTML = VOTE_COUNT;
+    let getVoteCount = getElement("#vote_count");
+    getVoteCount.innerHTML = vote_count;
+    let progressBar = getElement("#progressbar");
     const allMinusButton = getAllElement("#minus");
     const allPlusButton = getAllElement("#plus");
     let allInputValue = getAllElement("input");
@@ -39,17 +42,15 @@ document.addEventListener('DOMContentLoaded', function Ready() {
     
 
     // Select all minus button
-    for (let minusButton of allMinusButton) {
-        minusButton.addEventListener('click', () => {  })
-    }
-
-    // Select All plus button
-    for (let plusButton of allPlusButton) {
-        plusButton.addEventListener('click', function increaseInputValue() {
-            for(let inputValue of allInputValue) {
-                console.log(inputValue.id);
-            }
-        })
-    }
-
+   for (let i = 0; i < allPlusButton.length; i++) {
+        let counter = 5;
+       allPlusButton[i].addEventListener("click", ()=> {
+                allInputValue[i].value++;
+                getVoteCount.innerHTML = --vote_count;
+                progressBar.style.width = `${--counter}%`
+                if(vote_count < 0) {
+                    return
+                }
+       })
+   }
 })

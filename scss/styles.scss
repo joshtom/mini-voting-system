@@ -90,11 +90,18 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin: 10px;
 
-    h3 {
+    h4 {
         margin-left: 20px;
     }
     button {
         margin-left: auto;
+        background: $DARK_PRIMARY;
+        width: 50px;
+        height: 50px;
+        cursor: default;
+        font-size: 20px;
+        color: white;
     }
 }

@@ -71,12 +71,19 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin: 10px;
 }
-.Leader__card h3 {
+.Leader__card h4 {
   margin-left: 20px;
 }
 .Leader__card button {
   margin-left: auto;
+  background: #232B3D;
+  width: 50px;
+  height: 50px;
+  cursor: default;
+  font-size: 20px;
+  color: white;
 }
 
 /*# sourceMappingURL=styles.css.map */

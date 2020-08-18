@@ -41,16 +41,16 @@ document.addEventListener('DOMContentLoaded', function Ready() {
 
     
 
-    // Select all minus button
+    // Select all plus button
    for (let i = 0; i < allPlusButton.length; i++) {
         let counter = 5;
        allPlusButton[i].addEventListener("click", ()=> {
-                allInputValue[i].value++;
-                getVoteCount.innerHTML = --vote_count;
-                progressBar.style.width = `${--counter}%`
-                if(vote_count < 0) {
-                    return
+                if(vote_count > 0) {
+                    allInputValue[i].value++;
+                    getVoteCount.innerHTML = --vote_count;
+                    progressBar.style.width = `${--counter}%`
                 }
+                return null;
        })
    }
 })

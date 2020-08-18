@@ -58,7 +58,7 @@ body {
 }
 .container .leader__button {
   background-color: #232B3D;
-  margin: auto;
+  color: #fff !important;
 }
 
 .back__to__vote {

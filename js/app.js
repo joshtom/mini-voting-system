@@ -1,9 +1,9 @@
 // All functions here
 /**TODO
- * select plus and minus button
- * select input field
- * assign the input field with progress bar.
- * User must not be able to vote more than the initial value
+ * select plus and minus button ✔
+ * select input field ✔
+ * assign the input field with progress bar. ✔
+ * User must not be able to vote more than the initial value ✔
  * Leader board should be displayed based on the value of each vote
  */
 
@@ -32,9 +32,6 @@
  var vote_count = 5;
  var store_vote_count = 0;
  
- let VALUE_COUNT = [];
-
-
 
 
 document.addEventListener('DOMContentLoaded', function Ready() {
@@ -94,6 +91,4 @@ document.addEventListener('DOMContentLoaded', function Ready() {
             }
    })
 }
-
-
 })

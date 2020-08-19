@@ -23,6 +23,12 @@
     return document.querySelectorAll(value).value;
  }
 
+ function fadeOut (value) {
+     setTimeout(() => {
+         return value.textContent = ''
+     }, 3000)
+ }
+
  var vote_count = 5;
  var store_vote_count = 0;
  
@@ -38,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function Ready() {
     let progressBar = getElement("#progressbar");
     const allMinusButton = getAllElement("#minus");
     const allPlusButton = getAllElement("#plus");
+    const getVoteLabel = getAllElement("#vote_label");
     let allInputValue = getAllElement("input");
 
     
@@ -57,12 +64,7 @@ document.addEventListener('DOMContentLoaded', function Ready() {
                         if(allInputValue[i] === store_vote_count || vote_count === 0){
                             getElement("#vote-warning").textContent = 'Vote Exhausted'
                             // Hide The text after 3 seconds
-                            setTimeout(() => {
-                                getElement("#vote-warning").textContent = ''
-                            }, 3000)
-                             // console.log('Input value', allInputValue[i].value);
-                        // console.log('Vote Count', vote_count);
-                        // console.log('Store Vote count', store_vote_count);
+                            fadeOut(getElement("#vote-warning"))
                         } 
                 }
                 else {
@@ -77,7 +79,9 @@ document.addEventListener('DOMContentLoaded', function Ready() {
    allMinusButton[i].addEventListener("click", ()=> {
             if(vote_count < 5) {
                 if(allInputValue[i].value <= 0) {
-                    alert('Cannot be less than 0');
+                    getVoteLabel[i].textContent = '* vote cannot be less than 0*'
+                    fadeOut(getVoteLabel[i]);
+                    return;
                 }
                 else {
                     allInputValue[i].value--;

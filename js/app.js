@@ -24,6 +24,7 @@
  }
 
  var vote_count = 5;
+ var store_vote_count = 0;
  
  let VALUE_COUNT = [];
 
@@ -46,13 +47,27 @@ document.addEventListener('DOMContentLoaded', function Ready() {
         let counter = 5;
        allPlusButton[i].addEventListener("click", ()=> {
                 if(vote_count > 0) {
-                    allInputValue[i].value++;
-                    getVoteCount.innerHTML = --vote_count;
-                    let progressPCT  = (allInputValue[i].value / counter) * 100;
-                    let remaningProgressPCT = 100 - progressPCT
-                    progressBar.style.width = `${remaningProgressPCT}%`                    
+                        allInputValue[i].value++;
+                        store_vote_count +=1;
+                        getVoteCount.innerHTML = --vote_count;
+                        let progressPCT  = (store_vote_count / counter) * 100;
+                        let remaningProgressPCT = 100 - progressPCT
+                        progressBar.style.width = `${remaningProgressPCT}%` 
+
+                        if(allInputValue[i] === store_vote_count || vote_count === 0){
+                            getElement("#vote-warning").textContent = 'Vote Exhausted'
+                            // Hide The text after 3 seconds
+                            setTimeout(() => {
+                                getElement("#vote-warning").textContent = ''
+                            }, 3000)
+                             // console.log('Input value', allInputValue[i].value);
+                        // console.log('Vote Count', vote_count);
+                        // console.log('Store Vote count', store_vote_count);
+                        } 
                 }
-                return null;
+                else {
+                    alert('You are sturborn');
+                }
        })
    }
 
@@ -61,16 +76,18 @@ document.addEventListener('DOMContentLoaded', function Ready() {
     let counter = 5;
    allMinusButton[i].addEventListener("click", ()=> {
             if(vote_count < 5) {
-            if(allInputValue[i].value >= 0) {
-                allInputValue[i].value--;
-                getVoteCount.innerHTML = ++vote_count;
-                let progressPCT  = (allInputValue[i].value / counter) * 100;
-                let remaningProgressPCT = 100 - progressPCT
-                progressBar.style.width = `${remaningProgressPCT}%`  
+                if(allInputValue[i].value <= 0) {
+                    alert('Cannot be less than 0');
+                }
+                else {
+                    allInputValue[i].value--;
+                    store_vote_count -= 1;
+                    getVoteCount.innerHTML = ++vote_count;
+                    let progressPCT  = (store_vote_count / counter) * 100;
+                    let remaningProgressPCT = 100 - progressPCT
+                    progressBar.style.width = `${remaningProgressPCT}%` 
+                } 
             }
-            return null;
-            }
-            return null;
    })
 }
 

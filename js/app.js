@@ -48,9 +48,31 @@ document.addEventListener('DOMContentLoaded', function Ready() {
                 if(vote_count > 0) {
                     allInputValue[i].value++;
                     getVoteCount.innerHTML = --vote_count;
-                    progressBar.style.width = `${--counter}%`
+                    let progressPCT  = (allInputValue[i].value / counter) * 100;
+                    let remaningProgressPCT = 100 - progressPCT
+                    progressBar.style.width = `${remaningProgressPCT}%`                    
                 }
                 return null;
        })
    }
+
+   // Select all minus button
+   for (let i = 0; i < allMinusButton.length; i++) {
+    let counter = 5;
+   allMinusButton[i].addEventListener("click", ()=> {
+            if(vote_count < 5) {
+            if(allInputValue[i].value >= 0) {
+                allInputValue[i].value--;
+                getVoteCount.innerHTML = ++vote_count;
+                let progressPCT  = (allInputValue[i].value / counter) * 100;
+                let remaningProgressPCT = 100 - progressPCT
+                progressBar.style.width = `${remaningProgressPCT}%`  
+            }
+            return null;
+            }
+            return null;
+   })
+}
+
+
 })

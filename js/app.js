@@ -40,7 +40,8 @@ function fadeOut(value) {
 
 let vote_count = 5;
 let store_vote_count = 0;
-let getAllUserVoteCount = [];
+// let getAllUserVoteCount = [];
+let getAllUserVoteCount = {};
 
 document.addEventListener("DOMContentLoaded", function Ready() {
   // Populate count value
@@ -67,8 +68,12 @@ document.addEventListener("DOMContentLoaded", function Ready() {
         progressBar.style.width = `${remaningProgressPCT}%`;
 
         // Get the total value of each housemate
-        obj.datas = allInputValue[i].value;
-        getAllUserVoteCount.push({ [i]: allInputValue[i].value });
+        // obj.datas = allInputValue[i].value;
+        // getAllUserVoteCount.push({ [i]: allInputValue[i].value });
+
+        getAllUserVoteCount[i] = allInputValue[i].value;
+        console.log(getAllUserVoteCount);
+
         if (allInputValue[i] === store_vote_count || vote_count === 0) {
           getElement("#vote-warning").textContent = "Vote Exhausted";
           // Hide The text after 3 seconds
@@ -101,8 +106,10 @@ document.addEventListener("DOMContentLoaded", function Ready() {
           let remaningProgressPCT = 100 - progressPCT;
           progressBar.style.width = `${remaningProgressPCT}%`;
           // Get the total value of each housemate
-          obj.datas = allInputValue[i].value;
-          getAllUserVoteCount.push({ [i]: allInputValue[i].value });
+        //   obj.datas = allInputValue[i].value;
+        //   getAllUserVoteCount.push({ [i]: allInputValue[i].value });
+        getAllUserVoteCount[i] = allInputValue[i].value;
+        console.log(getAllUserVoteCount);
         }
       }
     });
@@ -114,8 +121,6 @@ document.addEventListener("DOMContentLoaded", function Ready() {
     if (vote_count !== 0) {
       alert("Please finish the vote");
     } else {
-        console.log(getAllUserVoteCount);
-      return;
       saveVoteValue(getAllUserVoteCount);
       window.location.href = "/leaderboard.html";
     }

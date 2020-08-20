@@ -6,7 +6,6 @@
  * User must not be able to vote more than the initial value ✔
  * Leader board should be displayed based on the value of each vote
  */
-
 function getElement(e) {
   return document.querySelector(e);
 }
@@ -38,6 +37,45 @@ function fadeOut(value) {
   }, 3000);
 }
 
+var LeaderBoard = [
+  {
+    id: 1,
+    name: "Nengi",
+    img: "Image here",
+    voteCount: 0,
+  },
+  {
+    id: 2,
+    name: "Dorathy",
+    img: "Image here",
+    voteCount: 0,
+  },
+  {
+    id: 3,
+    name: "Ozo",
+    img: "Image here",
+    voteCount: 0,
+  },
+  {
+    id: 4,
+    name: "Laycon",
+    img: "Image here",
+    voteCount: 0,
+  },
+  {
+    id: 5,
+    name: "Erica",
+    img: "Image here",
+    voteCount: 0,
+  },
+  {
+    id: 6,
+    name: "Kiddwaya",
+    img: "Image here",
+    voteCount: 0,
+  },
+];
+
 let vote_count = 5;
 let store_vote_count = 0;
 // let getAllUserVoteCount = [];
@@ -66,13 +104,12 @@ document.addEventListener("DOMContentLoaded", function Ready() {
         let progressPCT = (store_vote_count / counter) * 100;
         let remaningProgressPCT = 100 - progressPCT;
         progressBar.style.width = `${remaningProgressPCT}%`;
+        LeaderBoard.map((value) => {
+          
+        })
 
-        // Get the total value of each housemate
-        // obj.datas = allInputValue[i].value;
-        // getAllUserVoteCount.push({ [i]: allInputValue[i].value });
-
-        getAllUserVoteCount[i] = allInputValue[i].value;
-        console.log(getAllUserVoteCount);
+        // getAllUserVoteCount[i] = allInputValue[i].value;
+        // console.log(getAllUserVoteCount);
 
         if (allInputValue[i] === store_vote_count || vote_count === 0) {
           getElement("#vote-warning").textContent = "Vote Exhausted";

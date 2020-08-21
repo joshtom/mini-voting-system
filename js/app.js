@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function Ready() {
         // getAllUserVoteCount.push({ [i]: allInputValue[i].value });
 
         getAllUserVoteCount[i] = allInputValue[i].value;
-        console.log(getAllUserVoteCount);
 
         if (allInputValue[i] === store_vote_count || vote_count === 0) {
           getElement("#vote-warning").textContent = "Vote Exhausted";
@@ -109,7 +108,6 @@ document.addEventListener("DOMContentLoaded", function Ready() {
         //   obj.datas = allInputValue[i].value;
         //   getAllUserVoteCount.push({ [i]: allInputValue[i].value });
         getAllUserVoteCount[i] = allInputValue[i].value;
-        console.log(getAllUserVoteCount);
         }
       }
     });
@@ -121,6 +119,8 @@ document.addEventListener("DOMContentLoaded", function Ready() {
     if (vote_count !== 0) {
       alert("Please finish the vote");
     } else {
+      console.log(getAllUserVoteCount);
+      return;
       saveVoteValue(getAllUserVoteCount);
       window.location.href = "/leaderboard.html";
     }

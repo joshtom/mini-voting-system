@@ -79,7 +79,7 @@ var LeaderBoard = [
 let vote_count = 5;
 let store_vote_count = 0;
 // let getAllUserVoteCount = [];
-let getAllUserVoteCount = {};
+// let getAllUserVoteCount = {};
 
 document.addEventListener("DOMContentLoaded", function Ready() {
   // Populate count value
@@ -104,12 +104,16 @@ document.addEventListener("DOMContentLoaded", function Ready() {
         let progressPCT = (store_vote_count / counter) * 100;
         let remaningProgressPCT = 100 - progressPCT;
         progressBar.style.width = `${remaningProgressPCT}%`;
-        LeaderBoard.map((value) => {
-          
-        })
 
-        // getAllUserVoteCount[i] = allInputValue[i].value;
-        // console.log(getAllUserVoteCount);
+        LeaderBoard.map((value, index) => {
+          if (index == i) {
+            // Compare the leaderboard index and the user click index
+            value.voteCount = Number(allInputValue[i].value);
+            // console.log(value.voteCount);
+          }
+        });
+
+        // console.log(LeaderBoard)
 
         if (allInputValue[i] === store_vote_count || vote_count === 0) {
           getElement("#vote-warning").textContent = "Vote Exhausted";
@@ -142,23 +146,40 @@ document.addEventListener("DOMContentLoaded", function Ready() {
           let progressPCT = (store_vote_count / counter) * 100;
           let remaningProgressPCT = 100 - progressPCT;
           progressBar.style.width = `${remaningProgressPCT}%`;
-          // Get the total value of each housemate
-        //   obj.datas = allInputValue[i].value;
-        //   getAllUserVoteCount.push({ [i]: allInputValue[i].value });
-        getAllUserVoteCount[i] = allInputValue[i].value;
-        console.log(getAllUserVoteCount);
+
+          LeaderBoard.map((value, index) => {
+            if (index == i) {
+              // Compare the leaderboard index and the user click index
+              value.voteCount = Number(allInputValue[i].value);
+              // console.log(value.voteCount);
+            }
+          });
+          // console.log(LeaderBoard);
         }
       }
     });
   }
 
-  //   Check leaderboard
+ 
+
+
   checkLeaderBoard.addEventListener("click", function check(e) {
     e.preventDefault();
+     //   Check leaderboard
+  let sortedLeaderBoard = LeaderBoard.sort(
+    (firstVoteCount, secondVoteCount) => {
+      return (firstVoteCount.voteCount < secondVoteCount.voteCount)
+        ? 1
+        : (firstVoteCount.voteCount > secondVoteCount.voteCount)
+        ? -1
+        : 0;
+    }
+  );
+    
     if (vote_count !== 0) {
       alert("Please finish the vote");
     } else {
-      saveVoteValue(getAllUserVoteCount);
+      saveVoteValue(sortedLeaderBoard);
       window.location.href = "/leaderboard.html";
     }
   });

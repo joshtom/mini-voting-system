@@ -43,37 +43,37 @@ function fadeOut(value) {
 
 var LeaderBoard = [
   {
-    id: 1,
+    id: 0,
     name: "Nengi",
     img: "./assets/nengi.png",
     voteCount: 0,
   },
   {
-    id: 2,
+    id: 1,
     name: "Dorathy",
     img: "./assets/dorathy.png",
     voteCount: 0,
   },
   {
-    id: 3,
+    id: 2,
     name: "Ozo",
     img: "./assets/ozo.png",
     voteCount: 0,
   },
   {
-    id: 4,
+    id: 3,
     name: "Laycon",
     img: "./assets/laycon.jpg",
     voteCount: 0,
   },
   {
-    id: 5,
+    id: 4,
     name: "Erica",
     img: "./assets/erica.jpg",
     voteCount: 0,
   },
   {
-    id: 6,
+    id: 5,
     name: "Kiddwaya",
     img: "./assets/kiddwaya.jpg",
     voteCount: 0,

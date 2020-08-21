@@ -93,8 +93,8 @@ document.addEventListener("DOMContentLoaded", function Ready() {
   const allPlusButton = getAllElement("#plus");
   const getVoteLabel = getAllElement("#vote_label");
   let checkLeaderBoard = getElement("#check_leaderboard");
+
   // get dom elements of modal to be populated
-  const getLeaderCard = getAllElement(".Leader__card");
   const getLeaderImg = getAllElement(".Leader__card img");
   const getLeaderName = getAllElement(".Leader__card h4");
   const getLeaderBtn = getAllElement(".Leader__card button");
@@ -103,6 +103,10 @@ document.addEventListener("DOMContentLoaded", function Ready() {
 
   const backToVoteButton = getAllElement("#back-to-vote");
   let allInputValue = getAllElement("input");
+
+  for(let i = 0; i < allInputValue.length; i++) {
+    allInputValue[i].disabled = true;
+  }
 
   // Select all plus button
   for (let i = 0; i < allPlusButton.length; i++) {
@@ -169,6 +173,41 @@ document.addEventListener("DOMContentLoaded", function Ready() {
     });
   }
 
+  // Select all inpuut value
+  // Work on this later
+  // for (let i = 0; i < allInputValue.length; i++) {
+  //   let counter = 150;
+  //   allInputValue[i].addEventListener("input", () => {
+  //     if (vote_count < 150) {
+  //       if (allInputValue[i].value <= 0) {
+  //         getVoteLabel[i].textContent = "* vote cannot be less than 0*";
+  //         fadeOut(getVoteLabel[i]);
+  //         return;
+  //       } 
+  //       else if(vote_count > 150)
+  //       else {
+  //         allInputValue[i].value--;
+  //         store_vote_count -= 1;
+  //         getVoteCount.innerHTML = ++vote_count;
+  //         let progressPCT = (store_vote_count / counter) * 100;
+  //         let remaningProgressPCT = 100 - progressPCT;
+  //         progressBar.style.width = `${remaningProgressPCT}%`;
+
+  //         LeaderBoard.map((value, index) => {
+  //           if (index == i) {
+  //             // Compare the leaderboard index and the user click index
+  //             value.voteCount = Number(allInputValue[i].value);
+  //             // console.log(value.voteCount);
+  //           }
+  //         });
+  //         // console.log(LeaderBoard);
+  //       }
+  //     }
+  //   });
+  // }
+
+
+
  
 
   checkLeaderBoard.addEventListener("click", function check(e) {
@@ -201,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function Ready() {
         
       })
 
-      getElement("#evicted").innerHTML = getLastVote.name;
+      getElement("#evicted").innerHTML = `${getLastVote.name} was evicted`;
       // Set the modal attribute
       this.setAttribute("data-toggle","modal");
       this.setAttribute("data-target",".leaderBoardModal");
@@ -218,6 +257,12 @@ document.addEventListener("DOMContentLoaded", function Ready() {
       checkLeaderBoard.removeAttribute("data-target");
       // Clear vote from local storage
       removeVoteValue();
+      // Reset the initial values
+      store_vote_count = 0;
+      vote_count = 150;
+      progressBar.style.width = `100%`;
+      getVoteCount.innerHTML = vote_count;
+      
 
       // Set all input value back to 0
       for (let i = 0; i < allInputValue.length; i++) {

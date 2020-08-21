@@ -113,15 +113,14 @@ document.addEventListener("DOMContentLoaded", function Ready() {
     let counter = 150;
     allPlusButton[i].addEventListener("click", () => {
       if (vote_count > 0) {
-        allInputValue[i].value++;
-        store_vote_count += 1;
-        getVoteCount.innerHTML = --vote_count;
-        let progressPCT = (store_vote_count / counter) * 100;
-        let remaningProgressPCT = 100 - progressPCT;
-        progressBar.style.width = `${remaningProgressPCT}%`;
-
         LeaderBoard.map((value, index) => {
           if (index == i) {
+            allInputValue[i].value++;
+            store_vote_count += 1;
+            getVoteCount.innerHTML = --vote_count;
+            let progressPCT = (store_vote_count / counter) * 100;
+            let remaningProgressPCT = 100 - progressPCT;
+            progressBar.style.width = `${remaningProgressPCT}%`;
             value.voteCount = Number(allInputValue[i].value);
           }
         });
@@ -145,7 +144,6 @@ document.addEventListener("DOMContentLoaded", function Ready() {
   // Select all minus button
   for (let i = 0; i < allMinusButton.length; i++) {
     let counter = 150;
-    let obj = {};
     allMinusButton[i].addEventListener("click", () => {
       if (vote_count < 150) {
         if (allInputValue[i].value <= 0) {
@@ -153,17 +151,16 @@ document.addEventListener("DOMContentLoaded", function Ready() {
           fadeOut(getVoteLabel[i]);
           return;
         } else {
-          allInputValue[i].value--;
-          store_vote_count -= 1;
-          getVoteCount.innerHTML = ++vote_count;
-          let progressPCT = (store_vote_count / counter) * 100;
-          let remaningProgressPCT = 100 - progressPCT;
-          progressBar.style.width = `${remaningProgressPCT}%`;
-
           LeaderBoard.map((value, index) => {
             if (index == i) {
-              // Compare the leaderboard index and the user click index
-              value.voteCount = Number(allInputValue[i].value);
+              allInputValue[i].value--;
+              store_vote_count -= 1;
+              getVoteCount.innerHTML = ++vote_count;
+              let progressPCT = (store_vote_count / counter) * 100;
+              let remaningProgressPCT = 100 - progressPCT;
+              progressBar.style.width = `${remaningProgressPCT}%`;
+                  // Compare the leaderboard index and the user click index
+                  value.voteCount = Number(allInputValue[i].value);
               // console.log(value.voteCount);
             }
           });
@@ -212,8 +209,10 @@ document.addEventListener("DOMContentLoaded", function Ready() {
 
   checkLeaderBoard.addEventListener("click", function check(e) {
     e.preventDefault();
-     //   Check leaderboard and Sort it based on the highest number of votes
-  let sortedLeaderBoard = LeaderBoard.sort(
+    //   Get copy of leaderboard and and Sort it based on the highest number of votes
+    let getCopyOfLeaderBoard = [...LeaderBoard]
+    
+    getCopyOfLeaderBoard.sort(
     (firstVoteCount, secondVoteCount) => {
       return (firstVoteCount.voteCount < secondVoteCount.voteCount)
         ? 1
@@ -227,48 +226,22 @@ document.addEventListener("DOMContentLoaded", function Ready() {
       getElement("#vote-error-text").textContent = '*finish the vote*'
       fadeOut(getElement("#vote-error-text"));
     } else {
-      saveVoteValue(sortedLeaderBoard);
-      const getLastVote = sortedLeaderBoard[sortedLeaderBoard.length - 1];
+      saveVoteValue(LeaderBoard);
+      const getLastVote = getCopyOfLeaderBoard[getCopyOfLeaderBoard.length - 1];
 
       // Populate the LeaderBoard modal with sorted content
       // Get the leaderboard DOM element and push the sortedLeaderBoard in it
-      sortedLeaderBoard.forEach((lv, i) => {
+      getCopyOfLeaderBoard.forEach((lv, i) => {
         getLeaderImg[i].src = lv.img;
         getLeaderName[i].innerHTML = lv.name
         getLeaderBtn[i].innerHTML = i + 1;
-
-        
-      })
+      })      
 
       getElement("#evicted").innerHTML = `${getLastVote.name} was evicted`;
       // Set the modal attribute
       this.setAttribute("data-toggle","modal");
       this.setAttribute("data-target",".leaderBoardModal");
-
-      
-      // window.location.href = "/leaderboard.html";
     }
   });
 
-  // Close the button and remove the modal
-  for(let i = 0; i < backToVoteButton.length; i++) {
-    backToVoteButton[i].addEventListener('click', function clearVote() {
-      checkLeaderBoard.removeAttribute("data-toggle");
-      checkLeaderBoard.removeAttribute("data-target");
-      // Clear vote from local storage
-      removeVoteValue();
-      // Reset the initial values
-      store_vote_count = 0;
-      vote_count = 150;
-      progressBar.style.width = `100%`;
-      getVoteCount.innerHTML = vote_count;
-      
-
-      // Set all input value back to 0
-      for (let i = 0; i < allInputValue.length; i++) {
-        allInputValue[i].value = 0;
-      }
-
-    })
-  }
 });

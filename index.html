@@ -1,190 +1,444 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/styles.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
 
     <title>BB Naija Housemate voting system</title>
   </head>
   <body>
-    
     <div class="container rounded m-auto">
-        <div class="row">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card d-flex">
+            <div class="m-auto w-100 p-5 card__banner rounded">
+              <p class="text-center">My Available votes</p>
+              <h1 class="text-center" id="vote_count"></h1>
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  id="progressbar"
+                  role="progressbar"
+                  style="width: 100%;"
+                  aria-valuenow="25"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <h3 class="text-center text-danger mt-3" id="vote-warning"></h3>
+        </div>
+      </div>
+      <!-- First row -->
+      <div class="row mt-4 card__container">
+        <div class="col-lg-6">
+          <div class="card p-4">
+            <div class="row">
+              <div class="left col-lg-3 d-flex">
+                <img
+                  src="./assets/nengi.png"
+                  alt="Nengi Image"
+                  class="m-auto"
+                />
+              </div>
+              <div class="right col-lg-9 col-sm-12">
+                <h2>Nengi</h2>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <button
+                      class="btn btn-outline-primary"
+                      type="button"
+                      id="minus"
+                    >
+                      -
+                    </button>
+                  </div>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="nengi_value"
+                    value="0"
+                  />
+
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-outline-primary"
+                      type="button"
+                      id="plus"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <label for="" class="text-danger" id="vote_label"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card p-4">
+            <div class="row">
+              <div class="left col-lg-3 d-flex">
+                <img
+                  src="./assets/dorathy.png"
+                  alt="Dorathy Image"
+                  class="m-auto"
+                />
+              </div>
+              <div class="right col-lg-9">
+                <h2>Dorathy</h2>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <button
+                      class="btn btn-outline-primary"
+                      type="button"
+                      id="minus"
+                    >
+                      -
+                    </button>
+                  </div>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="dorathy_value"
+                    value="0"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-outline-primary"
+                      type="button"
+                      id="plus"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <label for="" class="text-danger" id="vote_label"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of First row -->
+      <!-- Second row -->
+      <div class="row mt-4 card__container">
+        <div class="col-lg-6">
+          <div class="card p-4">
+            <div class="row">
+              <div class="left col-lg-3 d-flex">
+                <img src="./assets/ozo.png" alt="Ozo Image" class="m-auto" />
+              </div>
+              <div class="right col-lg-9">
+                <h2>Ozo</h2>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <button
+                      class="btn btn-outline-primary"
+                      type="button"
+                      id="minus"
+                    >
+                      -
+                    </button>
+                  </div>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="ozo_value"
+                    value="0"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-outline-primary"
+                      type="button"
+                      id="plus"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <label for="" class="text-danger" id="vote_label"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card p-4">
+            <div class="row">
+              <div class="left col-lg-3 d-flex">
+                <img
+                  src="./assets/laycon.jpg"
+                  alt="Laycon Image"
+                  class="m-auto"
+                />
+              </div>
+              <div class="right col-lg-9">
+                <h2>Laycon</h2>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <button
+                      class="btn btn-outline-primary"
+                      type="button"
+                      id="minus"
+                    >
+                      -
+                    </button>
+                  </div>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="number_value"
+                    value="0"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-outline-primary"
+                      type="button"
+                      id="plus"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <label for="" class="text-danger" id="vote_label"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of Second row -->
+
+      <!-- Third row -->
+      <div class="row mt-4 card__container">
+        <div class="col-lg-6">
+          <div class="card p-4">
+            <div class="row">
+              <div class="left col-lg-3 d-flex">
+                <img
+                  src="./assets/erica.jpg"
+                  alt="Dorathy Image"
+                  class="m-auto"
+                />
+              </div>
+              <div class="right col-lg-9">
+                <h2>Erica</h2>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <button
+                      class="btn btn-outline-primary"
+                      type="button"
+                      id="minus"
+                    >
+                      -
+                    </button>
+                  </div>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="number_value"
+                    value="0"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-outline-primary"
+                      type="button"
+                      id="plus"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <label for="" class="text-danger" id="vote_label"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card p-4">
+            <div class="row">
+              <div class="left col-lg-3 col-sm-12 d-flex">
+                <img
+                  src="./assets/kiddwaya.jpg"
+                  alt="Dorathy Image"
+                  class="m-auto"
+                />
+              </div>
+              <div class="right col-lg-9 col-sm-12">
+                <h2>Kiddwaya</h2>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <button
+                      class="btn btn-outline-primary"
+                      type="button"
+                      id="minus"
+                    >
+                      -
+                    </button>
+                  </div>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="number_value"
+                    value="0"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-outline-primary"
+                      type="button"
+                      id="plus"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <label for="" class="text-danger" id="vote_label"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of Third row -->
+
+      <center>
+        <a
+          class="btn m-auto leader__button"
+          href="/leaderboard.html"
+          id="check_leaderboard"
+        >
+          View LeaderBoard
+      </a> <br />
+      <p id="vote-error-text" class="text-danger"></p>
+      </center>
+
+      <!-- LeaderBoard Modal -->
+
+<div class="modal fade leaderBoardModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title text-center modal-center" id="exampleModalLabel">LeaderBoard</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" id="back-to-vote">&times;</span>
+            </button>
+          </div>
+        <div class="modal-body">
+            <div class="row mt-4 card__container">
+                <div class="col-lg-6">
+                    <div class="card p-4 Leader__card">
+                        <img src="" alt="">
+                        <h4></h4>
+                        <button class="btn rounded-circle btn__number"></button>
+                    </div>
+                </div>
+    
+                <div class="col-lg-6">
+                  <div class="card p-4 Leader__card">
+                      <img src="" alt="">
+                      <h4></h4>
+                      <button class="btn rounded-circle btn__number"></button>
+                  </div>
+                </div>
+    
+                <div class="col-lg-6">
+                  <div class="card p-4 Leader__card">
+                      <img src="" alt="">
+                      <h4></h4>
+                      <button class="btn rounded-circle btn__number"></button>
+                  </div>
+              </div>
+    
+              <div class="col-lg-6">
+                <div class="card p-4 Leader__card">
+                    <img src="" alt="">
+                    <h4></h4>
+                    <button class="btn rounded-circle btn__number"></button>
+                </div>
+              </div>
+    
+              <div class="col-lg-6">
+                <div class="card p-4 Leader__card">
+                    <img src="" alt="">
+                    <h4></h4>
+                    <button class="btn rounded-circle btn__number"></button>
+                </div>
+            </div>
+    
+            <div class="col-lg-6">
+              <div class="card p-4 Leader__card">
+                  <img src="" alt="">
+                  <h4></h4>
+                  <button class="btn rounded-circle btn__number"></button>
+              </div>
+            </div>
+
             <div class="col-lg-12">
-                    <div class="card d-flex ">
-                        <div class="m-auto w-100 p-5 card__banner rounded">
-                        <p class="text-center">My Available votes</p>
-                        <h1 class="text-center" id="vote_count"></h1>
-                        <div class="progress">
-                            <div class="progress-bar" id="progressbar" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                        
-                    </div>
-                    <h3 class="text-center text-danger mt-3" id="vote-warning"></h3>
-              
+                <h3 class="text-center text-danger" id="evicted"></h3>
+              </div>
+                
             </div>
+            <!-- End of First row -->
         </div>
-        <!-- First row -->
-        <div class="row mt-4 card__container">
-            <div class="col-lg-6">
-                <div class="card p-4">
-                    <div class="row">
-                        <div class="left col-lg-3 d-flex">
-                            <img src="./assets/nengi.png" alt="Nengi Image" class="m-auto">
-                        </div>
-                        <div class="right col-lg-9 col-sm-12">
-                            <h2>Nengi</h2>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <button class="btn btn-outline-primary" type="button" id="minus">-</button>
-                                </div>
-                                  <input type="number" class="form-control" id="nengi_value" value="0">
-                                  
-                                  <div class="input-group-append">
-                                  <button class="btn btn-outline-primary" type="button" id="plus">+</button>
-                                  </div>
-                                  <label for="" class="text-danger" id="vote_label"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card p-4">
-                    <div class="row">
-                        <div class="left col-lg-3 d-flex">
-                            <img src="./assets/dorathy.png" alt="Dorathy Image" class="m-auto">
-                        </div>
-                        <div class="right col-lg-9">
-                            <h2>Dorathy</h2>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <button class="btn btn-outline-primary" type="button" id="minus">-</button>
-                                </div>
-                                  <input type="number" class="form-control" id="dorathy_value" value="0">
-                                  <div class="input-group-append">
-                                  <button class="btn btn-outline-primary" type="button" id="plus">+</button>
-                                  </div>
-                                  <label for="" class="text-danger" id="vote_label"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End of First row -->
-         <!-- Second row -->
-         <div class="row mt-4 card__container">
-            <div class="col-lg-6">
-                <div class="card p-4">
-                    <div class="row">
-                        <div class="left col-lg-3 d-flex">
-                            <img src="./assets/ozo.png" alt="Ozo Image" class="m-auto">
-                        </div>
-                        <div class="right col-lg-9">
-                            <h2>Ozo</h2>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <button class="btn btn-outline-primary" type="button" id="minus">-</button>
-                                </div>
-                                  <input type="number" class="form-control" id="ozo_value" value="0">
-                                  <div class="input-group-append">
-                                  <button class="btn btn-outline-primary" type="button" id="plus">+</button>
-                                  </div>
-                                  <label for="" class="text-danger" id="vote_label"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card p-4">
-                    <div class="row">
-                        <div class="left col-lg-3 d-flex">
-                            <img src="./assets/laycon.jpg" alt="Laycon Image" class="m-auto">
-                        </div>
-                        <div class="right col-lg-9">
-                            <h2>Laycon</h2>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <button class="btn btn-outline-primary" type="button" id="minus">-</button>
-                                </div>
-                                  <input type="number" class="form-control" id="number_value" value="0">
-                                  <div class="input-group-append">
-                                  <button class="btn btn-outline-primary" type="button" id="plus">+</button>
-                                  </div>
-                                  <label for="" class="text-danger" id="vote_label"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End of Second row -->
+        <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              id="back-to-vote"
+            >
+              Back to Vote
+            </button>
+          </div>
+    </div>
+  </div>
+</div>
 
-         <!-- Third row -->
-         <div class="row mt-4 card__container">
-            <div class="col-lg-6">
-                <div class="card p-4">
-                    <div class="row">
-                        <div class="left col-lg-3 d-flex">
-                            <img src="./assets/erica.jpg" alt="Dorathy Image" class="m-auto">
-                        </div>
-                        <div class="right col-lg-9">
-                            <h2>Erica</h2>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <button class="btn btn-outline-primary" type="button" id="minus">-</button>
-                                </div>
-                                  <input type="number" class="form-control" id="number_value" value="0">
-                                  <div class="input-group-append">
-                                  <button class="btn btn-outline-primary" type="button" id="plus">+</button>
-                                  </div>
-                                  <label for="" class="text-danger" id="vote_label"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card p-4">
-                    <div class="row">
-                        <div class="left col-lg-3 col-sm-12 d-flex">
-                            <img src="./assets/kiddwaya.jpg" alt="Dorathy Image" class="m-auto">
-                        </div>
-                        <div class="right col-lg-9 col-sm-12">
-                            <h2>Kiddwaya</h2>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <button class="btn btn-outline-primary" type="button" id="minus">-</button>
-                                </div>
-                                  <input type="number" class="form-control" id="number_value" value="0">
-                                  <div class="input-group-append">
-                                  <button class="btn btn-outline-primary" type="button" id="plus">+</button>
-                                  </div>
-                                  <label for="" class="text-danger" id="vote_label"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End of Third row -->
 
-        <center><a class="btn m-auto leader__button" href="/leaderboard.html" id="check_leaderboard"> View LeaderBoard </a></center>
+
+
+
+
+
+
+
+
+
+
+
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
     <script src="./js/app.js"></script>
   </body>
 </html>

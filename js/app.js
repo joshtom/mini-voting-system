@@ -1,42 +1,3 @@
-// All functions here
-/**TODO
- * select plus and minus button ✔
- * select input field ✔
- * assign the input field with progress bar. ✔
- * User must not be able to vote more than the initial value ✔
- * Leader board should be displayed based on the value of each vote
- */
-function getElement(e) {
-  return document.querySelector(e);
-}
-
-function getAllElementValue(value) {
-  return document.querySelectorAll(value).value;
-}
-
-function getAllElement(e) {
-  return document.querySelectorAll(e);
-}
-
-function getElementValue(value) {
-  return document.querySelectorAll(value).value;
-}
-
-function saveVoteValue(valueObj) {
-  let valueObjToSave = JSON.stringify(valueObj);
-  return window.localStorage.setItem("values", valueObjToSave);
-}
-
-function getVoteValue() {
-  return JSON.parse(window.localStorage.getItem(valueObjToGet));
-}
-
-function fadeOut(value) {
-  setTimeout(() => {
-    return (value.textContent = "");
-  }, 3000);
-}
-
 var LeaderBoard = [
   {
     id: 1,
@@ -77,110 +38,125 @@ var LeaderBoard = [
 ];
 
 let vote_count = 5;
-let store_vote_count = 0;
-// let getAllUserVoteCount = [];
-// let getAllUserVoteCount = {};
 
-document.addEventListener("DOMContentLoaded", function Ready() {
-  // Populate count value
-  let getVoteCount = getElement("#vote_count");
-  getVoteCount.innerHTML = vote_count;
-  let progressBar = getElement("#progressbar");
-  const allMinusButton = getAllElement("#minus");
-  const allPlusButton = getAllElement("#plus");
-  const getVoteLabel = getAllElement("#vote_label");
-  const checkLeaderBoard = getElement("#check_leaderboard");
-  let allInputValue = getAllElement("input");
+const getVoteCount = document.querySelector("#vote_count");
+getVoteCount.innerHTML = vote_count;
+const progressBar = document.querySelector("#progressbar");
+const allMinusButton = document.querySelectorAll("#minus");
+const allPlusButton = document.querySelectorAll("#plus");
+const getVoteLabel = document.querySelectorAll("#vote_label");
+const checkLeaderBoard = document.querySelector("#check_leaderboard");
+const allInputValue = document.querySelectorAll("input");
 
-  // Select all plus button
-  for (let i = 0; i < allPlusButton.length; i++) {
-    let counter = 5;
-    let obj = {};
-    allPlusButton[i].addEventListener("click", () => {
-      if (vote_count > 0) {
-        allInputValue[i].value++;
-        store_vote_count += 1;
-        getVoteCount.innerHTML = --vote_count;
-        let progressPCT = (store_vote_count / counter) * 100;
-        let remaningProgressPCT = 100 - progressPCT;
-        progressBar.style.width = `${remaningProgressPCT}%`;
+function getTotalVote() {
+  let totalVote = 0;
+  allInputValue.forEach((input) => {
+    totalVote += +input.value;
+  });
+  return totalVote;
+}
 
-        LeaderBoard.map((value, index) => {
-          if (index == i) {
-            // Compare the leaderboard index and the user click index
-            value.voteCount = Number(allInputValue[i].value);
-            // console.log(value.voteCount);
-          }
-        });
+function updateProgress() {
+  let totalVote = getTotalVote();
+  let progressPCT = (totalVote / vote_count) * 100;
+  let remaningProgressPCT = vote_count - progressPCT;
+  progressBar.style.width = `${remaningProgressPCT}%`;
+  getVoteCount.innerHTML = `${vote_count - totalVote}`;
+}
 
-        // console.log(LeaderBoard)
+function voteError(errMsg) {
+  setTimeout(() => {
+    document.querySelector("#vote-warning").textContent = `${errMsg}`;
+  }, 3000);
+}
 
-        if (allInputValue[i] === store_vote_count || vote_count === 0) {
-          getElement("#vote-warning").textContent = "Vote Exhausted";
-          // Hide The text after 3 seconds
-          fadeOut(getElement("#vote-warning"));
-        }
-      } else {
-        // alert('You are sturborn');
-        getElement("#vote-warning").textContent = "Vote Exhausted";
-        // Hide The text after 3 seconds
-        fadeOut(getElement("#vote-warning"));
-      }
-    });
-  }
+// Select all plus button
+for (let i = 0; i < allPlusButton.length; i++) {
+  allPlusButton[i].addEventListener("click", () => {
+    let initialVote = allInputValue[i].value;
+    let totalVote = getTotalVote();
 
-  // Select all minus button
-  for (let i = 0; i < allMinusButton.length; i++) {
-    let counter = 5;
-    let obj = {};
-    allMinusButton[i].addEventListener("click", () => {
-      if (vote_count < 5) {
-        if (allInputValue[i].value <= 0) {
-          getVoteLabel[i].textContent = "* vote cannot be less than 0*";
-          fadeOut(getVoteLabel[i]);
-          return;
-        } else {
-          allInputValue[i].value--;
-          store_vote_count -= 1;
-          getVoteCount.innerHTML = ++vote_count;
-          let progressPCT = (store_vote_count / counter) * 100;
-          let remaningProgressPCT = 100 - progressPCT;
-          progressBar.style.width = `${remaningProgressPCT}%`;
-
-          LeaderBoard.map((value, index) => {
-            if (index == i) {
-              // Compare the leaderboard index and the user click index
-              value.voteCount = Number(allInputValue[i].value);
-              // console.log(value.voteCount);
-            }
-          });
-          // console.log(LeaderBoard);
-        }
-      }
-    });
-  }
-
- 
-
-
-  checkLeaderBoard.addEventListener("click", function check(e) {
-    e.preventDefault();
-     //   Check leaderboard
-  let sortedLeaderBoard = LeaderBoard.sort(
-    (firstVoteCount, secondVoteCount) => {
-      return (firstVoteCount.voteCount < secondVoteCount.voteCount)
-        ? 1
-        : (firstVoteCount.voteCount > secondVoteCount.voteCount)
-        ? -1
-        : 0;
+    if (allInputValue[i].value > vote_count) {
+      getVoteLabel[i].innerHTML = "Excess vote";
     }
-  );
-    
-    if (vote_count !== 0) {
-      alert("Please finish the vote");
-    } else {
-      saveVoteValue(sortedLeaderBoard);
-      window.location.href = "/leaderboard.html";
+    if (totalVote !== vote_count) {
+      // Map through leaderboard object and and assign values to vote count
+      LeaderBoard.map((value, index) => {
+        if (index == i) {
+          // Get the values of different input
+          allInputValue[i].value = Number(initialVote) + 1;
+          value.voteCount = Number(initialVote) + 1;
+        }
+      });
+      updateProgress();
     }
   });
+}
+
+// Select all minus button
+for (let i = 0; i < allMinusButton.length; i++) {
+  allMinusButton[i].addEventListener("click", () => {
+    let initialVote = allInputValue[i].value;
+
+    if (!(initialVote < 1)) {
+      // Map through leaderboard object and and assign values to vote count
+      LeaderBoard.map((value, index) => {
+        if (index == i) {
+          // Get the values of different input
+          allInputValue[i].value = Number(initialVote) - 1;
+          value.voteCount = Number(initialVote) - 1;
+        }
+      });
+      updateProgress();
+    }
+  });
+}
+
+// Select all input field
+for (let i = 0; i < allInputValue.length; i++) {
+  allInputValue[i].addEventListener("input", () => {
+    let totalVote = getTotalVote();
+    if (totalVote > vote_count) {
+      getVoteLabel[i].innerHTML = "Excess vote";
+    }
+    if (allInputValue[i].value < 0) {
+      getVoteLabel[i].innerHTML = "Invalid input";
+    }
+    else {
+      getVoteLabel[i].innerHTML = "";
+      LeaderBoard.map((value, index) => {
+        if (index == i) {
+          // Get the values of different input
+          value.voteCount = allInputValue[i].value;
+        }
+      });
+      updateProgress();
+    }
+  });
+  allInputValue[i].addEventListener("focusout", () => {
+    allInputValue[i].value == "" ? (allInputValue[i].value = 0) : null;
+    if (allInputValue[i].value < 0) {
+      allInputValue[i].value = 0;
+      getVoteLabel[i].innerHTML = "";
+    }
+  });
+}
+
+checkLeaderBoard.addEventListener("click", function check(e) {
+  e.preventDefault();
+  //   Check leaderboard
+  var originalLeaderBoard = [...LeaderBoard];
+  let sortedLeaderBoard = originalLeaderBoard.sort((a, b) => {
+    return a.voteCount < b.voteCount ? 1 : a.voteCount > b.voteCount ? -1 : 0;
+  });
+  const getLastContestant = sortedLeaderBoard[sortedLeaderBoard.length - 1];
+
+  if (getTotalVote() !== vote_count) {
+    document.querySelector("#vote_error").innerHTML = "*Finish the vote*";
+  } else {
+    const getLeaderBoard = JSON.stringify(sortedLeaderBoard);
+    const getLastLeader = JSON.stringify(getLastContestant);
+    window.localStorage.setItem('leader', getLeaderBoard)
+    window.localStorage.setItem('last', getLastLeader)
+  }
 });
